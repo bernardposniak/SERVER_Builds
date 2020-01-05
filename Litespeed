@@ -43,7 +43,6 @@ ufw allow ssh
 ufw enable
 ufw reload
 ufw status
-service php-fpm restart
 service nginx restart
 echo http://139.162.211.218:8088 
 echo http://139.162.211.218:7080 
