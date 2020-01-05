@@ -33,6 +33,7 @@ cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 echo "ignoreip = 127.0.0.1/8 139.162.211.218" >> /etc/fail2ban/jail.local
 /usr/local/lsws/bin/lswsctrl status
 /usr/local/lsws/admin/misc/admpass.sh
+apt-get install install ufw -y
 ufw default deny incoming
 ufw default allow outgoing
 ufw allow http
