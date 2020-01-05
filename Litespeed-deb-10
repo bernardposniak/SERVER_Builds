@@ -48,5 +48,5 @@ ufw status
 service nginx restart
 echo http://139.162.211.218:8088 
 echo http://139.162.211.218:7080 
-echo https://openlitespeed.org/mediawiki/index.php/Help:PHP_FCGI_Setup
+echo --enable-fastcgi --enable-discard-path --disable-path-info-check
 
