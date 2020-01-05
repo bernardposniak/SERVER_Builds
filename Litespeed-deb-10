@@ -49,4 +49,5 @@ service nginx restart
 echo http://139.162.211.218:8088 
 echo http://139.162.211.218:7080 
 echo --enable-fastcgi --enable-discard-path --disable-path-info-check
+echo https://openlitespeed.org/kb/openlitespeed-pagespeed-module/
 
