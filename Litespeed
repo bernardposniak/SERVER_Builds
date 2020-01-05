@@ -16,7 +16,10 @@ sudo apt install python-certbot-nginx -t stretch-backports
 /usr/local/lsws/bin/lswsctrl start
 apt-get update -y 
 apt-get upgrade -y
-apt-get install lsphp73 php-cgi  php-fpm php-apcu  php-apcu-bc
+apt-get install ca-certificates apt-transport-https lsb-release
+wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php7.3.list
+apt-get install lsphp73 php7.3-cgi php7.3-fpm php-apcu php7.3-apcu-bc -y
 ln -sf /usr/local/lsws/lsphp73/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp5
 sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 100M/g' /usr/local/lsws/lsphp73/etc/php/7.3/litespeed/php.ini
 sed -i 's/memory_limit = 128M/memory_limit = 256M/g' /usr/local/lsws/lsphp73/etc/php/7.3/litespeed/php.ini
@@ -32,9 +35,14 @@ echo "ignoreip = 127.0.0.1/8 139.162.211.218" >> /etc/fail2ban/jail.local
 /usr/local/lsws/admin/misc/admpass.sh
 ufw default deny incoming
 ufw default allow outgoing
-ufw allow http && ufw allow https && ufw allow 8088/tcp && ufw allow 7080/tcp
+ufw allow http
+ufw allow https
+ufw allow 8088/tcp
+ufw allow 7080/tcp
 ufw allow ssh
-ufw enable && ufw reload && ufw status
+ufw enable
+ufw reload
+ufw status
 service php-fpm restart
 service nginx restart
 echo http://139.162.211.218:8088 
